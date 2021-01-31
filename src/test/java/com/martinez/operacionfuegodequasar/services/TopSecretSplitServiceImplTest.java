@@ -6,7 +6,6 @@ import com.martinez.operacionfuegodequasar.dtos.request.SatelliteRequestDTO;
 import com.martinez.operacionfuegodequasar.dtos.response.PositionDTO;
 import com.martinez.operacionfuegodequasar.dtos.response.SatelliteResponseDTO;
 import com.martinez.operacionfuegodequasar.exceptions.IncorrectSatelliteNameException;
-import com.martinez.operacionfuegodequasar.exceptions.InformationRequiredException;
 import com.martinez.operacionfuegodequasar.services.topsecret.TopSecretServiceImpl;
 import com.martinez.operacionfuegodequasar.services.topsecretsplit.TopSecretSplitServiceImpl;
 import org.junit.Before;
