@@ -1,4 +1,4 @@
-Tenologias Utilizadas:
+Tecnologías Utilizadas:
 
 - Java 1.8
 - Spring boot version 2.4.2
