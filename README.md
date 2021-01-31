@@ -4,7 +4,7 @@ Tenologias Utilizadas:
 - Maven 
 - Junit 4
 
-<br>Instalacion por terminal:
+<br>Levantar la aplicacion de forma local por terminal:
 
 -Primero: https://github.com/LeandroMartinez044/operacion-fuego-de-quasar.git
 <br>-Segundo: mvn spring-boot:run
