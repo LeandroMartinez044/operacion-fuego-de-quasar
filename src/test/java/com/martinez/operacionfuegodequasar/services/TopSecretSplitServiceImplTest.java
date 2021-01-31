@@ -112,8 +112,6 @@ public class TopSecretSplitServiceImplTest {
 
     }
 
-
-
     @Test
     public void Incorrect_Satellite_name(){
         InformationDTO informationDTO = new InformationDTO();
