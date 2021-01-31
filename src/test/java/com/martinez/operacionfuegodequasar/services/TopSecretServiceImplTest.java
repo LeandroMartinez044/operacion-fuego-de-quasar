@@ -33,10 +33,10 @@ public class TopSecretServiceImplTest {
     private SatelliteService satelliteService;
 
     @Captor
-    ArgumentCaptor<float[]> distancesArgumentCaptor;
+    private ArgumentCaptor<float[]> distancesArgumentCaptor;
 
     @Captor
-    ArgumentCaptor<String[][]> messageToReadArgumentCaptor;
+    private ArgumentCaptor<String[][]> messageToReadArgumentCaptor;
 
     @Before
     public void setup() {
@@ -44,12 +44,12 @@ public class TopSecretServiceImplTest {
     }
 
     @Test
-    public void processInformationOfTheSpaceCraft_OK() {
+    public void processInformationFromSatellites_OK() {
 
         when(satelliteService.getLocation(any())).thenReturn(new PositionDTO(-300, 200));
         when(satelliteService.getMessage(any())).thenReturn("este es un mensaje secreto");
 
-        topSecretService.processInformationFromSatellites(getRequest_OK());
+        topSecretService.processInformation(getRequest_OK());
 
         verify(satelliteService).getLocation(distancesArgumentCaptor.capture());
         verify(satelliteService).getMessage(messageToReadArgumentCaptor.capture());
@@ -62,7 +62,7 @@ public class TopSecretServiceImplTest {
     @Test
     public void Less_Of_Three_Satellites() {
         Assertions.assertThrows(InformationRequiredException.class, () -> {
-            topSecretService.processInformationFromSatellites(getRequestLessOfThreeSatellites());
+            topSecretService.processInformation(getRequestLessOfThreeSatellites());
         });
         verify(satelliteService, times(0)).getLocation(any());
         verify(satelliteService, times(0)).getMessage(any());
@@ -71,7 +71,7 @@ public class TopSecretServiceImplTest {
     @Test
     public void Without_Messages() {
         Assertions.assertThrows(InformationRequiredException.class, () -> {
-            topSecretService.processInformationFromSatellites(getRequestWithoutMessage());
+            topSecretService.processInformation(getRequestWithoutMessage());
         });
 
         verify(satelliteService).getLocation(any());

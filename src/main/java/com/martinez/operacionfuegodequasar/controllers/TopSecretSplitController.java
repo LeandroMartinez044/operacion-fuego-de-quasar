@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TopSecretSplitController {
 
-    static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretSplitController.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretSplitController.class);
 
     private TopSecretSplitService topSecretSplitService;
 

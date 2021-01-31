@@ -19,7 +19,7 @@ public class SatelliteServiceImpl implements SatelliteService {
      * Para obtener las coordenas x e y, Se aplica la fórmula deducida y explicada en el documento "Desarrollo-de-formula"
      *
      * @param distances
-     * @return PositionDTO
+     * @return PositionDTO con los valores del eje x e y.
      */
     @Override
     public PositionDTO getLocation(float... distances) {
@@ -123,24 +123,24 @@ public class SatelliteServiceImpl implements SatelliteService {
     }
 
     /**
-     * Se aplica la fórmula para encontrar x desarrollada en el doocumento "desarrollo-formula.pdf"
+     * Se aplica la fórmula para encontrar el eje x, desarrollada en el documento "desarrollo-formula.pdf"
      *
      * @param kenobiDistance
      * @param skywalkerDistance
      * @param satoDistance
-     * @return valor x de coordenada de la nave.
+     * @return valor del eje x de coordenada de la nave.
      */
     private Float calculateX(float kenobiDistance, float skywalkerDistance, float satoDistance) {
         return (float) (((Math.pow(kenobiDistance, 2) / 200f) - ((3 / 400f) * Math.pow(skywalkerDistance, 2)) + (Math.pow(satoDistance, 2) / 400f) - 1950) / 4f);
     }
 
     /**
-     * Se aplica la fórmula para encontrar y desarrollada en el doocumento "desarrollo-formula.pdf"
+     * Se aplica la fórmula para encontrar el eje y, desarrollada en el documento "desarrollo-formula.pdf"
      *
      * @param kenobiDistance
      * @param skywalkerDistance
      * @param satoDistance
-     * @return valor y de coordenada de la nave.
+     * @return valor del eje y de coordenada de la nave.
      */
     private float calculateY(float kenobiDistance, float skywalkerDistance, float satoDistance) {
         return (float) (((Math.pow(kenobiDistance, 2) / 1200f) - ((5 / 2400f) * Math.pow(skywalkerDistance, 2)) + (Math.pow(satoDistance, 2) / 800f) - 525) / ((1 / 6f) - 0.5));

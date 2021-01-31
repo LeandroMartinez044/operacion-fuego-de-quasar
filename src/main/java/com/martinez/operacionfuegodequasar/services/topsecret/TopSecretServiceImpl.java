@@ -34,7 +34,7 @@ public class TopSecretServiceImpl implements TopSecretService {
      * @return Localización del eje x e y de la nave y el mensaje generado.
      */
     @Override
-    public SatelliteResponseDTO processInformationFromSatellites(SatelliteRequestDTO satelliteRequestDTO) {
+    public SatelliteResponseDTO processInformation(SatelliteRequestDTO satelliteRequestDTO) {
         LOG.info("TopSecretServiceImpl.processInformationFromSatellites");
 
         Map<String, Float> distances = extractDistances(satelliteRequestDTO.getSatellites());
@@ -68,7 +68,7 @@ public class TopSecretServiceImpl implements TopSecretService {
     /**
      * Extrae los arrays de palabras de los satélites.
      * Debe al menos existir un array, en caso de que no exista
-     * lanzara una exception InformationRequiredException
+     * lanzara una exception InformationRequiredException.
      *
      * @param satellites
      * @return arrays de palabras

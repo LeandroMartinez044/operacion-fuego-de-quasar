@@ -26,6 +26,6 @@ public class TopSecretController {
     @PostMapping
     public ResponseEntity getInformation(@RequestBody SatelliteRequestDTO satelliteRequestDTO){
         LOG.info("TopSecretController.getInformation");
-        return ResponseEntity.ok(topSecretService.processInformationFromSatellites(satelliteRequestDTO));
+        return ResponseEntity.ok(topSecretService.processInformation(satelliteRequestDTO));
     }
 }

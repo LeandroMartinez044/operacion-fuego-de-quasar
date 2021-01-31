@@ -6,6 +6,6 @@ import com.martinez.operacionfuegodequasar.dtos.request.SatelliteRequestDTO;
 
 public interface TopSecretService {
 
-    SatelliteResponseDTO processInformationFromSatellites(SatelliteRequestDTO satelliteRequestDTO);
+    SatelliteResponseDTO processInformation(SatelliteRequestDTO satelliteRequestDTO);
 
 }

@@ -6,6 +6,7 @@ import com.martinez.operacionfuegodequasar.dtos.request.SatelliteRequestDTO;
 import com.martinez.operacionfuegodequasar.dtos.response.SatelliteResponseDTO;
 import com.martinez.operacionfuegodequasar.exceptions.IncorrectSatelliteNameException;
 import com.martinez.operacionfuegodequasar.services.topsecret.TopSecretService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,35 +15,54 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TopSecretSplitImpl implements TopSecretSplitService {
+public class TopSecretSplitServiceImpl implements TopSecretSplitService {
+
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretSplitServiceImpl.class);
 
     private final List<SatelliteDTO> satellites = new ArrayList<>();
 
     private final TopSecretService topSecretService;
 
     @Autowired
-    public TopSecretSplitImpl(TopSecretService topSecretService){
+    public TopSecretSplitServiceImpl(TopSecretService topSecretService) {
         this.topSecretService = topSecretService;
     }
 
-
+    /**
+     * Guarda la informacion del satelite en un Arraylist. Si no fue creado actualiza la informacion.
+     * Si el nombre del satélite no existe entonces lanza una exception IncorrectSatelliteNameException
+     *
+     * @param satelliteName
+     * @param informationDTO
+     */
     @Override
     public void captureSatelliteInformation(String satelliteName, InformationDTO informationDTO) {
+        LOG.info("TopSecretSplitServiceImpl.captureSatelliteInformation -satelliteName: [{}] -distances: [{}] -messages: [{}]", satelliteName, informationDTO.getDistance(), informationDTO.getMessage());
+
         validateName(satelliteName);
         Optional<SatelliteDTO> currentSatellite = findSatelliteByName(satelliteName);
 
-        if(currentSatellite.isPresent()){
+        if (currentSatellite.isPresent()) {
             updateInformationOfSatellite(currentSatellite.get(), informationDTO);
-        }else{
+        } else {
             createInformationOfSatellite(new SatelliteDTO(satelliteName, informationDTO.getDistance(), informationDTO.getMessage()));
         }
     }
 
+    /**
+     * Consume el servicio processInformation de topSecretService.
+     * Utiliza el ArrayList con los datos que fueron al almacenados.
+     *
+     * @return posición x e y, y el mensaje obtenido.
+     */
     @Override
     public SatelliteResponseDTO getInformation() {
+        LOG.info("TopSecretSplitServiceImpl.captureSatelliteInformation");
+
         SatelliteRequestDTO satelliteRequestDTO = new SatelliteRequestDTO();
         satelliteRequestDTO.setSatellites(satellites);
-        return topSecretService.processInformationFromSatellites(satelliteRequestDTO);
+
+        return topSecretService.processInformation(satelliteRequestDTO);
     }
 
     private Optional<SatelliteDTO> findSatelliteByName(String satelliteName) {
@@ -61,8 +81,8 @@ public class TopSecretSplitImpl implements TopSecretSplitService {
     }
 
     private void validateName(String satelliteName) {
-        if(!satelliteName.equals("kenobi") && !satelliteName.equals("skywalker") && !satelliteName.equals("sato")){
-            throw new IncorrectSatelliteNameException("No existe satelite con el nombre: " + satelliteName);
+        if (!satelliteName.equals("kenobi") && !satelliteName.equals("skywalker") && !satelliteName.equals("sato")) {
+            throw new IncorrectSatelliteNameException("No existe satélite con el nombre: " + satelliteName);
         }
     }
 }
