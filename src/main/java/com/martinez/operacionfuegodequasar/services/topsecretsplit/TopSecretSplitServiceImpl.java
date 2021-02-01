@@ -19,7 +19,7 @@ public class TopSecretSplitServiceImpl implements TopSecretSplitService {
 
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretSplitServiceImpl.class);
 
-    private final List<SatelliteDTO> satellites = new ArrayList<>();
+    private List<SatelliteDTO> satellites = new ArrayList<>();
 
     private final TopSecretService topSecretService;
 
@@ -52,6 +52,7 @@ public class TopSecretSplitServiceImpl implements TopSecretSplitService {
     /**
      * Consume el servicio processInformation de topSecretService.
      * Utiliza el ArrayList con los datos que fueron al almacenados.
+     * Una vez la operación fue exitosa, resea los valores
      *
      * @return posición x e y, y el mensaje obtenido.
      */
@@ -61,8 +62,10 @@ public class TopSecretSplitServiceImpl implements TopSecretSplitService {
 
         SatelliteRequestDTO satelliteRequestDTO = new SatelliteRequestDTO();
         satelliteRequestDTO.setSatellites(satellites);
+        SatelliteResponseDTO satelliteResponseDTO = topSecretService.processInformation(satelliteRequestDTO);
+        satellites = new ArrayList<>();
 
-        return topSecretService.processInformation(satelliteRequestDTO);
+        return satelliteResponseDTO;
     }
 
     private Optional<SatelliteDTO> findSatelliteByName(String satelliteName) {

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class TopSecretServiceImpl implements TopSecretService {
 
-    static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretServiceImpl.class);
 
     private SatelliteService satelliteService;
 

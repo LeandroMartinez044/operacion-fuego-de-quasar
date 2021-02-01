@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 @Service
 public class SatelliteServiceImpl implements SatelliteService {
 
-    static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SatelliteServiceImpl.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SatelliteServiceImpl.class);
 
     /**
      * Obtiene la posición de la nave respecto a los 3 satelites kenobi, skywalker y sato.

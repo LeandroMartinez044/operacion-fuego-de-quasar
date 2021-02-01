@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TopSecretController {
 
-    static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretController.class);
+    private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TopSecretController.class);
 
     private TopSecretService topSecretService;
 
