@@ -35,7 +35,7 @@ public class TopSecretServiceImpl implements TopSecretService {
      */
     @Override
     public SatelliteResponseDTO processInformation(SatelliteRequestDTO satelliteRequestDTO) {
-        LOG.info("TopSecretServiceImpl.processInformationFromSatellites");
+        LOG.info("TopSecretServiceImpl.processInformation");
 
         Map<String, Float> distances = extractDistances(satelliteRequestDTO.getSatellites());
         PositionDTO positionDTO = satelliteService.getLocation(distances.get("kenobi"), distances.get("skywalker"), distances.get("sato"));

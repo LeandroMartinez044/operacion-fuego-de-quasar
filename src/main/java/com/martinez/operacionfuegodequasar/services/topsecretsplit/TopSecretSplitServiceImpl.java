@@ -58,7 +58,7 @@ public class TopSecretSplitServiceImpl implements TopSecretSplitService {
      */
     @Override
     public SatelliteResponseDTO getInformation() {
-        LOG.info("TopSecretSplitServiceImpl.captureSatelliteInformation");
+        LOG.info("TopSecretSplitServiceImpl.getInformation");
 
         SatelliteRequestDTO satelliteRequestDTO = new SatelliteRequestDTO();
         satelliteRequestDTO.setSatellites(satellites);
