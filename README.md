@@ -8,7 +8,8 @@ Tecnologías Utilizadas:
 <br>Levantar la aplicación de forma local por terminal:
 
 -Primero: git clone https://github.com/LeandroMartinez044/operacion-fuego-de-quasar.git
-<br>-Segundo: mvn spring-boot:run
+<br>-Segundo: mvn install
+<br>-Tercero: mvn spring-boot:run
 
 Desarrollo de fórmula para la ubicación de la nave:
 <br>https://github.com/LeandroMartinez044/operacion-fuego-de-quasar/blob/master/src/main/resources/desarrollo-formula.pdf
